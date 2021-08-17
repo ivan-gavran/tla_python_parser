@@ -94,7 +94,7 @@ namechar = '[a-zA-Z0-9_]'
 name = f'({namechar})*{letter}({namechar})*'
 
 
-class Lexer(object):
+class Lexer:
     '''Lexer for the TLA+ specification language.'''
 
     states = (
