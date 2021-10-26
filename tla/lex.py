@@ -326,7 +326,7 @@ class Lexer(object):
     #   { Bytes.set (Bytes.of_string h) 0 '0' ;
     #     Bytes.set (Bytes.of_string h) 1 'x' ;
     #     [ NUM (string_of_int (int_of_string h), "") ] }
-    hexadecimal = '(\\h,\\H)({numeral}|[a-fA-F])+'
+    hexadecimal = f'(\\h,\\H)({numeral}|[a-fA-F])+'
 
     @ply.lex.TOKEN(hexadecimal)
     def HEXADECIMAL_INTEGER(self, t):
