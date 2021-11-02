@@ -22,7 +22,7 @@ VERSION = f'{MAJOR}.{MINOR}.{MICRO}'
 VERSION_FILE_TEXT = (
     '# This file was generated from `setup.py`\n'
     f"version = '{VERSION}'\n")
-PYTHON_REQUIRES = '>=3.8'
+PYTHON_REQUIRES = '>=3.10'
 INSTALL_REQUIRES = [
     'infix >= 1.2',
     'ply >= 3.4, <= 3.10',
@@ -36,8 +36,6 @@ CLASSIFIERS = [
     'Operating System :: OS Independent',
     'Programming Language :: Python',
     'Programming Language :: Python :: 3 :: Only',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.10',
     'Topic :: Scientific/Engineering',
     'Topic :: Software Development :: Compilers',
