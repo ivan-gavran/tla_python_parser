@@ -258,7 +258,7 @@ def _generate_tlaops():
             ('//', (13, 13), Infix(Non()), list()),
             ('^^', (14, 14), Infix(Non()), list()),
             ('@@', (6, 6), Infix(Left()), list()),
-            ('!!', (9,13), Infix(Non()), list()),
+            ('!!', (9, 13), Infix(Non()), list()),
             ('|-', (5, 5), Infix(Non()), list()),
             ('|=', (5, 5), Infix(Non()), list()),
             ('-|', (5, 5), Infix(Non()), list()),
