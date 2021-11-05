@@ -1,5 +1,5 @@
 """Installation script."""
-from setuptools import setup
+import setuptools
 
 
 PACKAGE_NAME = 'tla'
@@ -55,7 +55,7 @@ def run_setup():
     """Write version file and install package."""
     with open(VERSION_FILE, 'w') as f:
         f.write(VERSION_FILE_TEXT)
-    setup(
+    setuptools.setup(
         name=PACKAGE_NAME,
         version=VERSION,
         description=DESCRIPTION,
