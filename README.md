@@ -12,7 +12,7 @@ representing the result of parsing.
 
 To install:
 
-```
+```shell
 pip install tla
 ```
 
