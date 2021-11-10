@@ -422,7 +422,6 @@ class Lexer:
         t.type = 'PUNCTUATION'
         return t
 
-
     def t_FAIRNESS(self, t):
         r'SF_|WF_'
         return t
