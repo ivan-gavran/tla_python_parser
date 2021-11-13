@@ -213,7 +213,7 @@ def _generate_tlaops():
             ('\\', (8, 8), Infix(Non()), ['\\setminus'], nodes.Setminus()),
             ('\\cap', (8, 8), Infix(Left()), ['\\intersect'], nodes.Cap()),
             ('\\cup', (8, 8), Infix(Left()), ['\\union'], nodes.Cup()),
-            ('\\X', (10, 13), Infix(Non()), ['\\times'], None),
+            ('\\X', (10, 13), Infix(Left()), ['\\times'], None),
             ]),
         ('Modal', [
             ("'", (15, 15), Postfix(), list(), nodes.Prime()),
