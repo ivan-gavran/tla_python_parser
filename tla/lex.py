@@ -341,7 +341,7 @@ class Lexer:
         t.lexer.begin('string')
 
     def t_string_escaped_quotes(self, t):
-        r'\\"|\\t|\\n|\\f|\\r|\\'
+        r'\\"|\\t|\\n|\\f|\\r|\\\\'
 
     def t_string_newline(self, t):
         r'\n'
