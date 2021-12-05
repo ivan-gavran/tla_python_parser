@@ -127,7 +127,7 @@ class Lexer:
         'FLOAT',
         'HEXADECIMAL_INTEGER',
         'IDENTIFIER',
-        'INTEGER',
+        'DECIMAL_INTEGER',
         'LINECOMMENT',
         'OCTAL_INTEGER',
         'PRAGMAS',
@@ -304,7 +304,7 @@ class Lexer:
     integer = f'{numeral}+'
 
     @ply.lex.TOKEN(integer)
-    def t_INTEGER(self, t):
+    def t_DECIMAL_INTEGER(self, t):
         return t
 
     # | ("\\b" ['0' '1']+ as b)
@@ -629,7 +629,7 @@ def _map_to_token_(token):
         return intf.NUM(str(value), None)
     elif type_ == 'IDENTIFIER':
         return intf.ID(token.value)
-    elif type_ == 'INTEGER':
+    elif type_ == 'DECIMAL_INTEGER':
         return intf.NUM(token.value, None)
     elif type_ == 'LINECOMMENT':
         raise ValueError('unexpected LINECOMMENT')
