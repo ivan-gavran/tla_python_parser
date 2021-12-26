@@ -159,7 +159,7 @@ class Lexer:
         """
         if debug and debuglog is None:
             debuglog = logger
-        self.lexer = ply.lex.lex(
+        self._lexer = ply.lex.lex(
             module=self,
             debug=debug,
             debuglog=debuglog,
@@ -167,19 +167,19 @@ class Lexer:
 
     def input(self, string):
         """Set data to `string` and reset state."""
-        self.lexer.input(string)
+        self._lexer.input(string)
         self._initialize_state()
 
     def _initialize_state(self):
         """Reset the lexer's state."""
-        self.lexer.lineno = 1
+        self._lexer.lineno = 1
         self._string_start = None
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        token = self.lexer.token()
+        token = self._lexer.token()
         if token is None:
             raise StopIteration
         return token
