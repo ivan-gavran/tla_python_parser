@@ -175,6 +175,15 @@ class Lexer:
         self.lexer.lineno = 1
         self._string_start = None
 
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        token = self.lexer.token()
+        if token is None:
+            raise StopIteration
+        return token
+
     # State "token" of the `tlapm` lexer
 
     # (* pragmas *)
@@ -514,7 +523,7 @@ def _lex(data):
     lexer = Lexer()
     lexer.input(data)
     output = list()
-    for token in lexer.lexer:
+    for token in lexer:
         # print(token)
         output.append(token)
     return output
