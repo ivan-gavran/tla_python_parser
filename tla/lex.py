@@ -337,7 +337,7 @@ class Lexer:
 
     def t_STRING(self, t):
         r'"'
-        t.lexer.string_start = t.lexpos
+        self._string_start = t.lexpos
         t.lexer.begin('string')
 
     def t_string_escaped_quotes(self, t):
@@ -352,7 +352,7 @@ class Lexer:
 
     def t_string_closing(self, t):
         r'"'
-        start = t.lexer.string_start
+        start = self._string_start
         end = t.lexpos + len(t.value)
         t.value = t.lexer.lexdata[start:end]
         t.lexer.begin('INITIAL')
