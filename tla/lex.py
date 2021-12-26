@@ -143,6 +143,7 @@ class Lexer:
             self.delimiters + self.operators +
             self.misc + list(self.reserved))
         self.build(debug=debug)
+        self._initialize_state()
 
     def build(
             self,
@@ -163,6 +164,16 @@ class Lexer:
             debug=debug,
             debuglog=debuglog,
             **kwargs)
+
+    def input(self, string):
+        """Set data to `string` and reset state."""
+        self.lexer.input(string)
+        self._initialize_state()
+
+    def _initialize_state(self):
+        """Reset the lexer's state."""
+        self.lexer.lineno = 1
+        self._string_start = None
 
     # State "token" of the `tlapm` lexer
 
@@ -501,7 +512,7 @@ def lex(data):
 
 def _lex(data):
     lexer = Lexer()
-    lexer.lexer.input(data)
+    lexer.input(data)
     output = list()
     for token in lexer.lexer:
         # print(token)
