@@ -341,11 +341,11 @@ class Lexer:
         r'(\\o|\\O)[0-7]+'
         return t
 
-    # | ("\\h" (numeral | ['a'-'f' 'A'-'F'])+ as h)
+    # | ("\\h" (numeral | ['A'-'F'])+ as h)
     #   { Bytes.set (Bytes.of_string h) 0 '0' ;
     #     Bytes.set (Bytes.of_string h) 1 'x' ;
     #     [ NUM (string_of_int (int_of_string h), "") ] }
-    hexadecimal = f'(\\h,\\H)({numeral}|[a-fA-F])+'
+    hexadecimal = f'(\\h,\\H)({numeral}|[A-F])+'
 
     @ply.lex.TOKEN(hexadecimal)
     def HEXADECIMAL_INTEGER(self, t):
