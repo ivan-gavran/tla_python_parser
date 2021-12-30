@@ -7,8 +7,6 @@ DESCRIPTION = (
     'Parser and abstract syntax tree for TLA+, '
     'the temporal logic of actions.')
 README = 'README.md'
-with open(README) as f:
-    long_description = f.read()
 URL = 'https://github.com/tlaplus/tla_python'
 PROJECT_URLS = {
     'Bug Tracker': 'https://github.com/tlaplus/tla_python/issues',
@@ -53,6 +51,8 @@ KEYWORDS = [
 
 def run_setup():
     """Write version file and install package."""
+    with open(README) as f:
+        long_description = f.read()
     with open(VERSION_FILE, 'w') as f:
         f.write(VERSION_FILE_TEXT)
     setuptools.setup(
