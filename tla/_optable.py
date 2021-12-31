@@ -139,7 +139,7 @@ def withdef(tuple_):
 #     '$',             ( 9,13), Infix(Left()),  [] ;
 #     '??',            ( 9,13), Infix(Left()),  [] ;
 #     '%%',            (10,11), Infix(Left()),  [] ;
-#     '%',             (10,11), Infix(Left()),  [ '\\mod' ] ;
+#     '%',             (10,11), Infix(Non()),  [ '\\mod' ] ;
 #     '##',            ( 9,13), Infix(Left()),  [] ;
 #     '++',            (10,10), Infix(Left()),  [] ;
 #     '--',            (11,11), Infix(Left()),  [] ;
@@ -250,7 +250,7 @@ def _generate_tlaops():
             ('$', (9, 13), Infix(Left()), list()),
             ('??', (9, 13), Infix(Left()), list()),
             ('%%', (10, 11), Infix(Left()), list()),
-            ('%', (10, 11), Infix(Left()), ['\\mod']),
+            ('%', (10, 11), Infix(Non()), ['\\mod']),
             ('##', (9, 13), Infix(Left()), list()),
             ('++', (10, 10), Infix(Left()), list()),
             ('--', (11, 11), Infix(Left()), list()),
