@@ -312,9 +312,9 @@ class Lexer:
     # (* numbers *)
     # | (numeral+ as ch) '.' (numeral+ as man)
     #   { [ NUM (ch, man) ] }
-    float = rf'{numeral}+\.{numeral}+'
+    float_numeric_literal = rf'{numeral}+\.{numeral}+'
 
-    @ply.lex.TOKEN(float)
+    @ply.lex.TOKEN(float_numeric_literal)
     def t_FLOAT(self, t):
         return t
 
