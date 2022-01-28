@@ -297,10 +297,8 @@ class Lexer:
     #   |"\\AA"|"\\E"|"\\EE"|'_' as p)
     #   { [ PUNCT p ] }
     punctuation = (
-        # '.' has been moved below to the method
-        # `PUNCTUATION_DOT`
-        r',|\(|\)|\[|\]_|\]|\{|\}|<<|>>_|>>|==|!'
-        r'|\@|::|:|;|->|<-|\|->|\\AA|\\A|\\EE|\\E')
+        r',|\(|\)|\[|\]_|\]|\{|\}|<<|>>_|>>|=='
+        r'|;|->|<-|\|->|\\AA|\\A|\\EE|\\E')
         # See also '_' in NAME
         # TODO: change \\A \\A \\E \\EE to prefix operators
         # in the grammar ?
@@ -399,24 +397,24 @@ class Lexer:
     postfix_operator = r'\'|\^\+|\^\*|\^\#'
 
     infix_operator = (
-        r'>=|\\geq|<=>|<=|=<|\\leq|\#|/='
+        r'>=|\\geq|<=>|<=|=<|\\leq|\#\#|\#|/='
         r'|\\oplus|\\ominus|\\otimes|\\oslash'
         r'|\\odot|\\cap|\\intersect'
         r'|\\cup|\\union|\\equiv|\\o|\\circ|\\X|\\times'
         r'|=>|\-\+\->|/\\|\\land'
-        r'|\\/|\\lor|\-\||::=|:=|<|=|=\||>|\\approx'
+        r'|\\/|\\lor|\-\||::=|:=|<:|<|=\||>|\\approx'
         r'|\\asymp|\\cong|\\doteq|\\gg|\\notin'
         r'|\\ll|\\preceq|\\prec'
-        r'|\\propto|\\sim|\\simeq'
+        r'|\\propto|\\simeq|\\sim'
         r'|\\sqsubseteq|\\sqsubset|\\sqsupseteq'
         r'|\\sqsupset|\\subseteq|\\subset'
         r'|\\succeq|\\succ|\\supseteq|\\supset'
-        r'|\|\-|\|=|\\cdot|@@|:>|<:|\\in|\\'
-        r'|\.\.\.|\.\.|!!|\#\#|\$\$|\$|\?\?|\\sqcap'
+        r'|\|\-|\|=|=|\\cdot|@@|:>|\\in'
+        r'|\.\.\.|\.\.|!!|\$\$|\$|\?\?|\\sqcap'
         r'|\\sqcup|\\uplus|\\wr|\+\+|\+|%%|%|\|\|'
         r'|\||\-\-|\-|\&\&|\&|\*\*|\*'
         r'|//|/|\\bigcirc|\\bullet'
-        r'|\\div|\\star|\^\^|\^')
+        r'|\\div|\\star|\^\^|\^|\\')
 
     def t_INFIX_OPERATOR_LEADSTO(self, t):
         r'\~>'
@@ -435,9 +433,9 @@ class Lexer:
     def t_INFIX_OPERATOR(self, t):
         return t
 
-    # ensure that '..' appears before '.'
-    def t_PUNCTUATION_DOT(self, t):
-        r'\.'
+    # ensure longest match
+    def t_PUNCTUATION_MORE(self, t):
+        r'!|::|:|\@|\.'
         t.type = 'PUNCTUATION'
         return t
 
