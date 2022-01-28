@@ -5,11 +5,11 @@
 #
 # This module is based on the files:
 #
-# https://github.com/tlaplus/tlapm/blob/master/src/builtin.ml
-# https://github.com/tlaplus/tlapm/blob/master/src/expr/e_t.ml
-# https://github.com/tlaplus/tlapm/blob/master/src/module/m_t.ml
-# https://github.com/tlaplus/tlapm/blob/master/src/proof/p_t.ml
-# https://github.com/tlaplus/tlapm/blob/master/src/proof/p_parser.ml
+# https://github.com/tlaplus/tlapm/blob/main/src/builtin.ml
+# https://github.com/tlaplus/tlapm/blob/main/src/expr/e_t.ml
+# https://github.com/tlaplus/tlapm/blob/main/src/module/m_t.ml
+# https://github.com/tlaplus/tlapm/blob/main/src/proof/p_t.ml
+# https://github.com/tlaplus/tlapm/blob/main/src/proof/p_parser.ml
 
 
 class Nodes:

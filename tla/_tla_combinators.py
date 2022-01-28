@@ -5,7 +5,7 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/master/src/tla_parser.ml
+# https://github.com/tlaplus/tlapm/blob/main/src/tla_parser.ml
 #
 import tla._combinators as pco
 from tla import _optable

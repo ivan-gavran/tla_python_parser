@@ -5,7 +5,7 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/master/src/loc.ml
+# https://github.com/tlaplus/tlapm/blob/main/src/loc.ml
 
 
 # type pt_ = { line : int ;
