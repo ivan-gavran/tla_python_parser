@@ -5,7 +5,7 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/main/src/module/m_parser.ml
+# <https://github.com/tlaplus/tlapm/blob/main/src/module/m_parser.ml>
 #
 from tla._combinators import (
     return_, succeed, fail, get, use, using,

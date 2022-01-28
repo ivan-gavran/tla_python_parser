@@ -8,7 +8,7 @@ The implementation is in the module `tla.tokens`.
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/main/src/pars/intf.ml
+# <https://github.com/tlaplus/tlapm/blob/main/src/pars/intf.ml>
 
 
 # (** Tokens *)

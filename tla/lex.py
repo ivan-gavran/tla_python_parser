@@ -5,8 +5,7 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/main/
-#     src/alexer.mll
+# <https://github.com/tlaplus/tlapm/blob/main/src/alexer.mll>
 #
 import logging
 import re

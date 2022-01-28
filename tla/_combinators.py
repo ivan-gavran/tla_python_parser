@@ -5,7 +5,7 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/main/src/pars/pco.ml
+# <https://github.com/tlaplus/tlapm/blob/main/src/pars/pco.ml>
 #
 from __future__ import absolute_import
 from __future__ import division

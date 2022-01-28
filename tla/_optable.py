@@ -5,7 +5,7 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/main/src/optable.ml
+# <https://github.com/tlaplus/tlapm/blob/main/src/optable.ml>
 #
 import pprint
 

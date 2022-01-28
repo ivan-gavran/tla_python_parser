@@ -5,7 +5,7 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/main/src/proof/p_parser.ml
+# <https://github.com/tlaplus/tlapm/blob/main/src/proof/p_parser.ml>
 import functools
 import uuid
 

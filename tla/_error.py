@@ -5,7 +5,7 @@
 #
 # This module is based on the file:
 #
-# https://github.com/tlaplus/tlapm/blob/main/src/pars/error.ml
+# <https://github.com/tlaplus/tlapm/blob/main/src/pars/error.ml>
 #
 #
 # open Ext
