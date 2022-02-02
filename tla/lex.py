@@ -90,8 +90,7 @@ PREFIX_OPERATORS = {
 letter   = '[a-zA-Z]'
 numeral  = '[0-9]'
 # namechar = letter | numeral | _
-namechar = '[a-zA-Z0-9_]'.format(
-    letter=letter, numeral=numeral)
+namechar = '[a-zA-Z0-9_]'
 name = f'({namechar})*{letter}({namechar})*'
 
 
