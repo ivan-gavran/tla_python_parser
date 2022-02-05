@@ -296,15 +296,12 @@ class Lexer:
     # |"@"|":"|"::"|";"|"->"|"<-"|"|->"|"\\A"
     #   |"\\AA"|"\\E"|"\\EE"|'_' as p)
     #   { [ PUNCT p ] }
-    punctuation = (
-        r',|\(|\)|\[|\]_|\]|\{|\}|<<|>>_|>>|=='
-        r'|;|->|<-|\|->|\\AA|\\A|\\EE|\\E')
         # See also '_' in NAME
         # TODO: change \\A \\A \\E \\EE to prefix operators
         # in the grammar ?
-
-    @ply.lex.TOKEN(punctuation)
     def t_PUNCTUATION(self, t):
+        (r',|\(|\)|\[|\]_|\]|\{|\}|<<|>>_|>>|=='
+         r'|;|->|<-|\|->|\\AA|\\A|\\EE|\\E')
         return t
 
     # (* numbers *)
@@ -387,50 +384,44 @@ class Lexer:
     #   | ("\\neg"|"\\lnot"|"~"|"-."|"<>"|"UNION"|"SUBSET"
     #     |"ENABLED"|"UNCHANGED"|"DOMAIN" as op)
     #       { [ OP op ] }
-    prefix_operator = (
-        r'\\neg|\\lnot|~|-\.|<>')
     # See also PREFIX_OPERATORS
 
     #   (* postfix operators *)
     #   | ("'"|"^+"|"^*"|"^#" as op)
     #       { [ OP op ] }
-    postfix_operator = r'\'|\^\+|\^\*|\^\#'
-
-    infix_operator = (
-        r'>=|\\geq|<=>|<=|=<|\\leq|\#\#|\#|/='
-        r'|\\oplus|\\ominus|\\otimes|\\oslash'
-        r'|\\odot|\\cap|\\intersect'
-        r'|\\cup|\\union|\\equiv|\\o|\\circ|\\X|\\times'
-        r'|=>|\-\+\->|/\\|\\land'
-        r'|\\/|\\lor|\-\||::=|:=|<:|<|=\||>|\\approx'
-        r'|\\asymp|\\cong|\\doteq|\\gg|\\notin'
-        r'|\\ll|\\preceq|\\prec'
-        r'|\\propto|\\simeq|\\sim'
-        r'|\\sqsubseteq|\\sqsubset|\\sqsupseteq'
-        r'|\\sqsupset|\\subseteq|\\subset'
-        r'|\\succeq|\\succ|\\supseteq|\\supset'
-        r'|\|\-|\|=|=|\\cdot|@@|:>|\\in'
-        r'|\.\.\.|\.\.|!!|\$\$|\$|\?\?|\\sqcap'
-        r'|\\sqcup|\\uplus|\\wr|\+\+|\+|%%|%|\|\|'
-        r'|\||\-\-|\-|\&\&|\&|\*\*|\*'
-        r'|//|/|\\bigcirc|\\bullet'
-        r'|\\div|\\star|\^\^|\^|\\')
 
     def t_INFIX_OPERATOR_LEADSTO(self, t):
         r'\~>'
         t.type = 'INFIX_OPERATOR'
         return t
 
-    @ply.lex.TOKEN(prefix_operator)
     def t_PREFIX_OPERATOR(self, t):
+        r'\\neg|\\lnot|~|-\.|<>'
         return t
 
-    @ply.lex.TOKEN(postfix_operator)
     def t_POSTFIX_OPERATOR(self, t):
+        r'\'|\^\+|\^\*|\^\#'
         return t
 
-    @ply.lex.TOKEN(infix_operator)
     def t_INFIX_OPERATOR(self, t):
+        (r'>=|\\geq|<=>|<=|=<|\\leq|\#\#|\#|/='
+         r'|\\oplus|\\ominus|\\otimes|\\oslash'
+         r'|\\odot|\\cap|\\intersect'
+         r'|\\cup|\\union|\\equiv|\\o|\\circ|\\X|\\times'
+         r'|=>|\-\+\->|/\\|\\land'
+         r'|\\/|\\lor|\-\||::=|:=|<:|<|=\||>|\\approx'
+         r'|\\asymp|\\cong|\\doteq|\\gg|\\notin'
+         r'|\\ll|\\preceq|\\prec'
+         r'|\\propto|\\simeq|\\sim'
+         r'|\\sqsubseteq|\\sqsubset|\\sqsupseteq'
+         r'|\\sqsupset|\\subseteq|\\subset'
+         r'|\\succeq|\\succ|\\supseteq|\\supset'
+         r'|\|\-|\|=|=|\\cdot|@@|:>|\\in'
+         r'|\.\.\.|\.\.|!!|\$\$|\$|\?\?|\\sqcap'
+         r'|\\sqcup|\\uplus|\\wr|\+\+|\+|%%|%|\|\|'
+         r'|\||\-\-|\-|\&\&|\&|\*\*|\*'
+         r'|//|/|\\bigcirc|\\bullet'
+         r'|\\div|\\star|\^\^|\^|\\')
         return t
 
     # ensure longest match
