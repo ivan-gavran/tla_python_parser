@@ -396,7 +396,7 @@ class Lexer:
     #   (* postfix operators *)
     #   | ("'"|"^+"|"^*"|"^#" as op)
     #       { [ OP op ] }
-    postfix_operator = r'\'|\^\+"|\^\*|\^\#'
+    postfix_operator = r'\'|\^\+|\^\*|\^\#'
 
     infix_operator = (
         r'>=|\\geq|<=>|<=|=<|\\leq|\#|/='
