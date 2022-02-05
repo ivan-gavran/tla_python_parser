@@ -416,6 +416,8 @@ class Nodes(_Nodes):
                 fixities = [u.fix for u in tlaops]
             else:
                 fixities = None
+            if op_str == '-.':
+                op_str = '-'
             n_args = len(arg_strings)
             if fixities is None:
                 pass
