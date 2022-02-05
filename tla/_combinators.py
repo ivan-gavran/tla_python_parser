@@ -1447,3 +1447,21 @@ def resolve(item_prs):
 #
 #     in next [] true
     return next_(list(), True)
+
+
+def any_isinstance(items, cls):
+    """`True` if any item is of type `cls`."""
+    return any(
+        isinstance(item, cls)
+        for item in items)
+
+
+def get_instance(items, cls):
+    """Return instance of `cls`, if any."""
+    for item in items:
+        if isinstance(item, cls):
+            if item is not None:
+                return item
+            raise ValueError(
+                '`cls` must not be `type(None)`')
+    return None

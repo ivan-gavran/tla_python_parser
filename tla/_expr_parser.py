@@ -136,30 +136,32 @@ def postfix(op, prec):
 #     end Op.optable ;
 def _generate_fixities():
     fixities = dict()
-    for form, top in _optable.optable.items():
-        if top.defn is None:
-            defn = tla_ast.Opaque(top.name)
-        else:
-            # defn = tla_ast.Internal(top.defn)
-            defn = top.defn
-        if isinstance(top.fix, _optable.Prefix):
-            res = prefix(defn, top.prec)
-        elif isinstance(top.fix, _optable.Postfix):
-            res = postfix(defn, top.prec)
-        elif isinstance(top.fix, _optable.Infix):
-            assoc = top.fix.assoc
-            if isinstance(assoc, _optable.Left):
-                assoc = pco.Left()
-            elif isinstance(assoc, _optable.Right):
-                assoc = pco.Right()
-            elif isinstance(assoc, _optable.Non):
-                assoc = pco.Non()
+    for form, alternatives in _optable.optable.items():
+        fixities.setdefault(form, list())
+        for top in alternatives:
+            if top.defn is None:
+                defn = tla_ast.Opaque(top.name)
             else:
-                raise ValueError(assoc)
-            res = infix(defn, top.prec, assoc)
-        else:
-            raise ValueError(top.fix)
-        fixities[form] = res
+                # defn = tla_ast.Internal(top.defn)
+                defn = top.defn
+            if isinstance(top.fix, _optable.Prefix):
+                res = prefix(defn, top.prec)
+            elif isinstance(top.fix, _optable.Postfix):
+                res = postfix(defn, top.prec)
+            elif isinstance(top.fix, _optable.Infix):
+                assoc = top.fix.assoc
+                if isinstance(assoc, _optable.Left):
+                    assoc = pco.Left()
+                elif isinstance(assoc, _optable.Right):
+                    assoc = pco.Right()
+                elif isinstance(assoc, _optable.Non):
+                    assoc = pco.Non()
+                else:
+                    raise ValueError(assoc)
+                res = infix(defn, top.prec, assoc)
+            else:
+                raise ValueError(top.fix)
+            fixities[form].append(res)
     return fixities
 #     Hashtbl.replace fixities "\\X" bin_prod ;
 #     Hashtbl.replace fixities "\\times" bin_prod ;
@@ -213,7 +215,7 @@ def expr(b):
 #             in
 #               choice (List.map non_test ops @ [return ops pts])
 def choice_fix_operators(b, p, pts):
-    ops = [fixities[p]]
+    ops = fixities[p]
     assert isinstance(ops, list), ops
     if not ops:
         return fail(f'unknown operator {p}')
@@ -2249,7 +2251,7 @@ def opdecl():
 def oparg(b):
     def f(op):
         if op in _optable.optable:
-            top = _optable.optable[op]
+            top, *_ = _optable.optable[op]
             if top.defn is None:
                 return tla_ast.Opaque(op)
             else:

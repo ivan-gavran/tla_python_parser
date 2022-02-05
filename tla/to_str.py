@@ -13,6 +13,7 @@
 import math
 import textwrap
 
+import tla._combinators as pco
 from tla import _optable
 from tla.ast import Nodes as _Nodes
 
@@ -411,12 +412,19 @@ class Nodes(_Nodes):
                 arg_.to_str(*arg, width=width, **kw)
                 for arg_ in args]
             if op_str in _optable.optable:
-                tlaop = _optable.optable[op_str]
-                fixity = tlaop.fix
+                tlaops = _optable.optable[op_str]
+                fixities = [u.fix for u in tlaops]
             else:
-                fixity = None
-            if isinstance(fixity, _optable.Infix):
-                assert len(arg_strings) == 2, arg_strings
+                fixities = None
+            n_args = len(arg_strings)
+            if fixities is None:
+                pass
+            elif n_args == 2:
+                assert pco.any_isinstance(
+                    fixities, _optable.Infix), (
+                    op, args,
+                    op_str, arg_strings,
+                    fixities)
                 res = f'{arg_strings[0]} {op_str} {arg_strings[1]}'
                 res_width, _ = _box_dimensions(res)
                 if res_width > width:
@@ -427,14 +435,22 @@ class Nodes(_Nodes):
                         res + '\n',
                         arg_strings[1])
                 return res
-            elif isinstance(fixity, _optable.Prefix):
+            elif n_args != 1:
+                raise ValueError(
+                    f'operator `{op_str}` applied to '
+                    f'{n_args} arguments (expected 1)')
+            elif pco.any_isinstance(
+                    fixities, _optable.Prefix):
                 assert len(arg_strings) == 1, arg_strings
+                assert not pco.any_isinstance(
+                    fixities, _optable.Postfix), op_str
                 return f'{op_str} {arg_strings[0]}'
-            elif isinstance(fixity, _optable.Postfix):
+            elif pco.any_isinstance(
+                    fixities, _optable.Postfix):
                 assert len(arg_strings) == 1, arg_strings
+                assert not pco.any_isinstance(
+                    fixities, _optable.Prefix), op_str
                 return f'{arg_strings[0]}{op_str}'
-            else:
-                pass
             args_str = ', '.join(arg_strings)
             res = f'{op_str}({args_str})'
             res_width, _ = _box_dimensions(res)

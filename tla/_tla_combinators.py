@@ -135,9 +135,14 @@ def anyinfix():
         if not isinstance(form, tokens.OP):
             return None
         name = form.string
-        op = _optable.optable[name]
-        if isinstance(op.fix, _optable.Infix):
-            return op.name
+        ops = _optable.optable[name]
+        fixities = [
+            op.name
+            for op in ops
+            if isinstance(op.fix, _optable.Infix)]
+        if fixities:
+            name, = fixities
+            return name
         return None
     return scan(f)
 
@@ -162,9 +167,14 @@ def anyprefix():
         if not isinstance(form, tokens.OP):
             return None
         name = form.string
-        op = _optable.optable[name]
-        if isinstance(op.fix, _optable.Prefix):
-            return op.name
+        ops = _optable.optable[name]
+        fixities = [
+            op.name
+            for op in ops
+            if isinstance(op.fix, _optable.Prefix)]
+        if fixities:
+            name, = fixities
+            return name
         return None
     return scan(f)
 
@@ -189,9 +199,14 @@ def anypostfix():
         if not isinstance(form, tokens.OP):
             return None
         name = form.string
-        op = _optable.optable[name]
-        if isinstance(op.fix, _optable.Postfix):
-            return op.name
+        ops = _optable.optable[name]
+        fixities = [
+            op.name
+            for op in ops
+            if isinstance(op.fix, _optable.Postfix)]
+        if fixities:
+            name, = fixities
+            return name
         return None
     return scan(f)
 
@@ -207,7 +222,7 @@ def anyop():
     def f(form):
         if isinstance(form, tokens.OP):
             name = form.string
-            op = _optable.optable[name]
+            *_, op = _optable.optable[name]
             return op.name
         else:
             return None

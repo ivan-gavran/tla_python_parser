@@ -350,9 +350,11 @@ def _generate_optable():
     for dom, ops in tlaops:
         for name, prec, fixity, alternatives, defn in ops:
             op = TLAOP(name, prec, fixity, dom, defn)
-            optable[name] = op
+            optable.setdefault(name, list())
+            optable[name].append(op)
             for s in alternatives:
-                optable[s] = op
+                optable.setdefault(s, list())
+                optable[s].append(op)
     return optable
 optable = _generate_optable()
 # pprint.pprint(optable)
