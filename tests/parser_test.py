@@ -31,6 +31,7 @@ expr_tests = [
     " x <: y ",
     " (x <: y) ",
     " x + y ",
+    " (x + y) ",
     " x - y ",
     " (x - y) ",
     " - x ",
@@ -42,7 +43,9 @@ expr_tests = [
     " -1 ",
     " (-1) ",
     " x / y ",
+    " (x / y) ",
     " x % y ",
+    " (x % y) ",
     " (x + 1) ",
     # quantification
     " \\A y \\in R:  <<u, v>> \\in S:  G(y, u, v) ",
