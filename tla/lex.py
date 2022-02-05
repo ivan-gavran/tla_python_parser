@@ -663,7 +663,7 @@ def find_beginning_of_line(input, token):
 
 
 def find_column(input, token):
-    """Return start column of `token`.
+    r"""Return start column of `token`.
 
     @return: number of column where
         `token` starts, with
