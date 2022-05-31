@@ -21,9 +21,8 @@ def parse_module_and_pretty_print():
     print(s)
 
 
-def _load_tla_module():
-    """Return contents of TLA+ file."""
-    tla_file_path = TLA_FILE_PATH
+def _load_tla_module(tla_file_path = TLA_FILE_PATH):
+    """Return contents of TLA+ file."""    
     with open(tla_file_path, 'r') as f:
         tla_spec = f.read()
     return tla_spec

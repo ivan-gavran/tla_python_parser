@@ -35,9 +35,12 @@ def parse(module_text, nodes=None):
     parser = mp.parse()
     init = _tla_combinators.init
     tokens = lex.tokenize(module_text, omit_preamble=True)
-    tree, pst = pco.run(parser, init=init, source=tokens)
+    res, msg, err = pco.run(parser, init=init, source=tokens)
     _restore(memo)
-    return tree
+    if isinstance(res, pco.Parsed):
+        return True, res.value, msg
+    else:
+        return False, err, msg
 
 
 def parse_expr(expr, nodes=None):

@@ -1,6 +1,6 @@
 ---- MODULE Counter ----
 (* A state machine that indefinitely increments a variable. *)
-VARIABLE x
+VARIABLE x,
 
 
 Init == x = 0

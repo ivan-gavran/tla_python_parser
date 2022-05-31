@@ -201,12 +201,14 @@ def exec_(ap, pst):
 def execute(ap, pst):
     rep = exec_(ap, pst)  # Reply
     res = rep.res
-    if isinstance(res, Parsed):
-        return res.value
-    elif isinstance(res, Failed):
-        kind = res.kind
-        msg = res.string
+    err = None
+    msg = None
+    if isinstance(res, Failed):
+        kind = res.kind        
+        msg = res.string        
+
         err = _error.error(pst.lastpos)
+        # print("Here: kind = {}, msg = {}, kind string = {}".format(kind, msg, kind.string))
         if isinstance(kind, Unexpected):
             un = kind.string
             err = _error.err_set_unexpected(un, err)
@@ -216,8 +218,8 @@ def execute(ap, pst):
         elif isinstance(kind, Internal):
             msg = kind.string
             err = _error.err_add_internal(msg, err)
-        _error.print_error(True, None, err)
-        return None
+        # _error.print_error(True, None, err)
+    return res, msg, err
 
 
 #   let run ap ~init ~source =
@@ -246,12 +248,12 @@ def run(ap, init, source):
     src = ListSlice(source, start=0)
     pst = Pstate(
         source=src, lastpos=lastpos, user_state=init)
-    r = execute(ap, pst)
+    return execute(ap, pst)
     # print('parsing stopped at:')
     # print(pst.lastpos)
     # print('remaining input:')
     # pprint.pprint(pst.source)
-    return r, pst
+    
 
 
 # Primitive parsers
